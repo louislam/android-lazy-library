@@ -158,6 +158,10 @@ or (starting an activity for result with bundle)
 
 ## Others ##
 
+Open URL in browser
+
+	L.openUrl(this, "http://google.com");
+
 Get your app's version
 
 	L.getAppVersion(this);
