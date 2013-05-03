@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Android-lazy-library by louislam</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Android-lazy-library</h1>
+        <h2>LouisLam's Lazy Library for Android. The library includes a lot of useful functions/methods for the rapid development.</h2>
+        <a href="https://github.com/louislam/android-lazy-library" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>LouisLam's Lazy Library for Android. </h1>
+
+<h3>Why we need the library?</h3>
+
+<p>Every single time, while i just wanted to pop out a simple alert dialog and I forgot how to create. Then I kept googling the code. Once I found that the code is very long. So I wonder why we cannot have a simple way just like Javascript alert(). It is easy to remember and just one line of code!</p>
+
+<p>So I decided to create the library to do that.</p>
+
+<pre><code>L.alert("Hi.");
+</code></pre>
+
+<p>Of course, the library contains other lazy functions. Check examples below.</p>
+
+<h3>Descriptions</h3>
+
+<p>There are example usage for the methods.</p>
+
+<p>"L" means LouisLam or Lazy.</p>
+
+<p>Assumption: 
+In all examples, "this" means Activity/Context object.</p>
+
+<h2>Installation</h2>
+
+<ol>
+<li>Download the jar file.</li>
+<li>Import the jar to your android project.</li>
+<li>
+<p>Import the package in your Class/Activity.</p>
+
+<pre><code>import net.louislam.android.L;
+</code></pre>
+</li>
+<li><p>Done.</p></li>
+</ol><h2>Lazy Alert Dialog</h2>
+
+<p>I love this so much. &lt;3</p>
+
+<p>Usage: </p>
+
+<pre><code>L.alert(this, "I am Louis.");
+</code></pre>
+
+<p>Alert Dialog with callback:</p>
+
+<pre><code>L.alert(this, "Boss: Where is Louis!?", new OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        L.alert(MainActivity.this, "Louis: here :( ");
+    }
+});
+</code></pre>
+
+<h2>Lazy Input Dialog</h2>
+
+<p>Example Usage:</p>
+
+<pre><code>L.inputDialog(this, "What is your name?", new InputListener() {
+
+    public void inputResult(String value) {
+        String name = value;
+        L.alert(MainActivity.this, "My name is: " + name);
+    }
+
+ });
+</code></pre>
+
+<p>With default value (add a parameter to the last)</p>
+
+<pre><code>L.inputDialog(this, "What is your name?", new InputListener() {
+
+    public void inputResult(String value) {
+        String name = value;
+        L.alert(MainActivity.this, "My name is: " + name);
+    }
+
+ }, "Louis");
+</code></pre>
+
+<h2>Lazy Confirmation Dialog</h2>
+
+<p>Example Usage:</p>
+
+<pre><code>L.confirmDialog(this, "Are you sure?", new OnClickListener () {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        // Do something here if clicked "Yes"   
+    }       
+});
+</code></pre>
+
+<p>For those activity classes already implements OnClickListener</p>
+
+<pre><code>public class LoginActivity extends Activity implements OnClickListener {
+    ....
+    public void quit() {
+        L.confirmDialog(this, "Are you sure?");
+    }
+    ....
+}
+</code></pre>
+
+<h2>Lazy Loading Dialog</h2>
+
+<p>Example Usage:</p>
+
+<pre><code>ProgressDialog loadingDialog = L.progressDialog(this, "Loading...");
+</code></pre>
+
+<p>Dismiss the dialog:</p>
+
+<pre><code>loadingDialog.dismiss();
+</code></pre>
+
+<h2>Lazy Log</h2>
+
+<p>simply methods for LogCat</p>
+
+<p>Example Usage:</p>
+
+<pre><code>L.log("[Debug] the activity is loaded.");
+</code></pre>
+
+<p>Disable/Enable Log globally</p>
+
+<pre><code>L.enableLog(false);
+</code></pre>
+
+<h2>Lazy String Storage</h2>
+
+<p>Store</p>
+
+<pre><code>L.storeString(this, "username", "louislam");
+</code></pre>
+
+<p>Retrieve / Get</p>
+
+<pre><code>L.getString(this, "username");
+</code></pre>
+
+<h2>Lazy Start Activity</h2>
+
+<p>Example Usage: </p>
+
+<pre><code>L.startActivity(this, "LoginActivity");
+</code></pre>
+
+<p>or</p>
+
+<pre><code>L.startActivity(this, LoginActivity.class);
+</code></pre>
+
+<p>or (For result)</p>
+
+<p>1314 = Request Code</p>
+
+<pre><code>L.startActivity(this, LoginActivity.class, 1314);
+</code></pre>
+
+<p>or (starting an activity for result with bundle)</p>
+
+<pre><code>Bundle bundle = new Bundle();
+L.startActivity(this, LoginActivity.class, 1314, bundle);
+</code></pre>
+
+<h2>Others</h2>
+
+<p>Get your app's version</p>
+
+<pre><code>L.getAppVersion(this);
+</code></pre>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/louislam/android-lazy-library/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/louislam/android-lazy-library/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/louislam/android-lazy-library"></a> is maintained by <a href="https://github.com/louislam">louislam</a>.</p>
+
+          <p>This page was generated by <a href="pages.github.com">GitHub Pages</a> using the Architect theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-36889556-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
