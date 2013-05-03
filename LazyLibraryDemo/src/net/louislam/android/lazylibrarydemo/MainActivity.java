@@ -3,6 +3,7 @@ package net.louislam.android.lazylibrarydemo;
 import net.louislam.android.L;
 import android.os.Bundle;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.view.Menu;
@@ -33,6 +34,16 @@ public class MainActivity extends Activity {
 			}
 			
 		});
+		
+		L.confirmDialog(this, "Are you sure?", new OnClickListener () {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// Do something here if clicked "Yes"	
+			}		
+		});
+		
+		ProgressDialog loading = L.progressDialog(this, "Loading...");
+		loading.dismiss();
 	}
 
 	@Override
