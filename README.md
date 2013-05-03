@@ -104,7 +104,7 @@ Example Usage:
 
 	ProgressDialog loadingDialog = L.progressDialog(this, "Loading...");
 
-Dismess the dialog:
+Dismiss the dialog:
 
 	loadingDialog.dismiss();
 
@@ -126,12 +126,12 @@ Disable/Enable Log globally
 
 Store
 
-	storeString(this, "username", "louislam");
+	L.storeString(this, "username", "louislam");
 
 
 Retrieve / Get
 
-	getString(this, "username");
+	L.getString(this, "username");
 	
 
 ## Lazy Start Activity ##
