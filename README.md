@@ -10,6 +10,21 @@ So I decided to create the library to do that.
 
 	L.alert(this, "Hi.");
 
+Without the library to do the same thing:
+
+	AlertDialog.Builder b = new AlertDialog.Builder(this);
+	b.setMessage("Hi.");
+	b.setCancelable(false);
+	b.setPositiveButton("OK", new OnClickListener() {
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			dialog.dismiss();
+		}
+	});
+	b.show();
+
+It is more simple, right?
+
 Of course, the library contains other lazy functions. Check examples below.
 
 
@@ -29,7 +44,7 @@ In all examples, "this" means Activity/Context object.
 2. Import the jar to your android project.
 3. Import the package in your Class/Activity.
 
-		import net.louislam.android.L;
+		import net.louislam.android.*;
 
 4. Done.
 
