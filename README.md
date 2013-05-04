@@ -34,9 +34,6 @@ There are example usage for the methods.
 
 "L" means LouisLam or Lazy.
 
-Assumption: 
-In all examples, "this" means Activity/Context object.
-
 
 ## Installation ##
 
@@ -47,6 +44,9 @@ In all examples, "this" means Activity/Context object.
 		import net.louislam.android.*;
 
 4. Done.
+
+### Assumption ###
+In all examples, **"this" means Activity/Context object.**
 
 
 ## Lazy Alert Dialog ##
