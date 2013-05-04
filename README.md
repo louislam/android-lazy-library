@@ -4,11 +4,11 @@ LouisLam's Lazy Library for Android.
 
 ### Why we need the library? ###
 
-Every single time, while i just wanted to pop out a simple alert dialog and I forgot how to create. Then I kept googling the code. Once I found that the code is very long. So I wonder why we cannot have a simple way just like Javascript alert(). It is easy to remember and just one line of code!
+Every single time, while i just wanted to pop out a simple alert dialog and I forgot how to create. Then I kept googling the code. Once I found that the code is very long. So I wonder why we cannot have a simple way just like Javascript's alert(). It is easy to remember and just one line of code!
 
 So I decided to create the library to do that.
 
-	L.alert("Hi.");
+	L.alert(this, "Hi.");
 
 Of course, the library contains other lazy functions. Check examples below.
 
