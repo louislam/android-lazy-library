@@ -42,6 +42,22 @@
 <pre><code>L.alert(this, "Hi.");
 </code></pre>
 
+<p>Without the library to do the same thing:</p>
+
+<pre><code>AlertDialog.Builder b = new AlertDialog.Builder(this);
+b.setMessage("Hi.");
+b.setCancelable(false);
+b.setPositiveButton("OK", new OnClickListener() {
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        dialog.dismiss();
+    }
+});
+b.show();
+</code></pre>
+
+<p>It is more simple, right?</p>
+
 <p>Of course, the library contains other lazy functions. Check examples below.</p>
 
 <h3>Descriptions</h3>
@@ -49,9 +65,6 @@
 <p>There are example usage for the methods.</p>
 
 <p>"L" means LouisLam or Lazy.</p>
-
-<p>Assumption: 
-In all examples, "this" means Activity/Context object.</p>
 
 <h2>Installation</h2>
 
@@ -61,11 +74,15 @@ In all examples, "this" means Activity/Context object.</p>
 <li>
 <p>Import the package in your Class/Activity.</p>
 
-<pre><code>import net.louislam.android.L;
+<pre><code>import net.louislam.android.*;
 </code></pre>
 </li>
 <li><p>Done.</p></li>
-</ol><h2>Lazy Alert Dialog</h2>
+</ol><h3>Assumption</h3>
+
+<p>In all examples, <strong>"this" means Activity/Context object.</strong></p>
+
+<h2>Lazy Alert Dialog</h2>
 
 <p>I love this so much. &lt;3</p>
 
