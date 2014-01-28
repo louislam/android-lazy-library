@@ -15,20 +15,20 @@ import android.util.Log;
 import android.widget.EditText;
 
 /**
- * Louis Lam's Lazy Library for Android. 
- * 
+ * Louis Lam's Lazy Library for Android.
+ * <p/>
  * Class name: L
- * 
+ * <p/>
  * "L" means Louis or Lazy.
  * there are example usage for the methods, please read methods' comment.
- * 
- * Assumption: 
+ * <p/>
+ * Assumption:
  * In all examples, "this" means Activity/Context object.
- * 
+ * <p/>
  * The MIT License (MIT)
- * 
+ * <p/>
  * Copyright (c) 2013 Louis Lam
- * 
+ * <p/>
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -37,7 +37,7 @@ import android.widget.EditText;
  * furnished to do so, subject to the following conditions:
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ * <p/>
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -45,24 +45,25 @@ import android.widget.EditText;
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- * 
+ *
  * @author Louis Lam (louis@louislam.net)
- * 
  */
 
 
 public class L {
 
-	/** Determine the log whether should be displayed */
-	private static boolean log = true;
-	
 	/**
-	 * Lazy start an activity with a string of class name. 
-	 * 
-	 * Example Usage: 
-	 * 	L.startActivity(this, "LoginActivity");
-	 * 
-	 * @param context 
+	 * Determine the log whether should be displayed
+	 */
+	private static boolean log = true;
+
+	/**
+	 * Lazy start an activity with a string of class name.
+	 * <p/>
+	 * Example Usage:
+	 * L.startActivity(this, "LoginActivity");
+	 *
+	 * @param context
 	 * @param className Activity class name
 	 */
 	public static void startActivity(Context context, String className) {
@@ -75,12 +76,12 @@ public class L {
 
 	/**
 	 * Lazy start an activity.
-	 * 
-	 * Example Usage: 
-	 * 	L.startActivity(this, LoginActivity.class);
-	 * 
+	 * <p/>
+	 * Example Usage:
+	 * L.startActivity(this, LoginActivity.class);
+	 *
 	 * @param context
-	 * @param c Class
+	 * @param c       Class
 	 */
 	public static void startActivity(Context context, Class<?> c) {
 		Intent i = new Intent(context, c);
@@ -89,11 +90,11 @@ public class L {
 
 	/**
 	 * Lazy start an Activity for result
-	 * 
-	 * Example Usage: 
-	 * 	L.startActivity(this, LoginActivity.class, 1314);
-	 * 
-	 * @param context 
+	 * <p/>
+	 * Example Usage:
+	 * L.startActivity(this, LoginActivity.class, 1314);
+	 *
+	 * @param context
 	 * @param c
 	 * @param requestCode
 	 */
@@ -103,15 +104,15 @@ public class L {
 
 	/**
 	 * Lazy start Activity for result with bundle
-	 * 
-	 * Example Usage: 
-	 * 	Bundle bundle = new Bundle();
-	 * 	L.startActivity(this, LoginActivity.class, 1314, bundle);
-	 * 
+	 * <p/>
+	 * Example Usage:
+	 * Bundle bundle = new Bundle();
+	 * L.startActivity(this, LoginActivity.class, 1314, bundle);
+	 *
 	 * @param context
 	 * @param c
 	 * @param requestCode
-	 * @param b Bundle object
+	 * @param b           Bundle object
 	 */
 	public static void startActivity(Activity context, Class<?> c, int requestCode, Bundle b) {
 		Intent i;
@@ -122,26 +123,27 @@ public class L {
 
 	/**
 	 * Lazy Alert (I love this so much.)
-	 * 
-	 * Example Usage: 
-	 * 	L.alert(this, "I am Louis.");
-	 * 
-	 * @param c context
-	 * @param msg the message 
+	 * <p/>
+	 * Example Usage:
+	 * L.alert(this, "I am Louis.");
+	 *
+	 * @param c   context
+	 * @param msg the message
 	 */
 	public static void alert(Context c, String msg) {
 		alert(c, msg, new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
-				
+
 				if (dialog != null)
 					dialog.dismiss();
 			}
 		});
 	}
-	
+
 	/**
 	 * Lazy Alert with callBack method
+	 *
 	 * @param c
 	 * @param msg
 	 * @param callBack
@@ -150,27 +152,27 @@ public class L {
 		if (c == null) {
 			return;
 		}
-		
+
 		AlertDialog.Builder b = new AlertDialog.Builder(c);
 		b.setMessage(msg);
 		b.setCancelable(false);
 		b.setPositiveButton("OK", callBack);
-		b.show();	
+		b.show();
 	}
 
 	/**
 	 * Lazy Input Dialog
-	 * 
-	 * Example Usage: 
-	 * 	L.inputDialog(this, "What is your name", new InputListener() {
-	 * 
-	 * 		public void inputResult(String value) {
-	 * 			String name = value;
-	 * 			L.alert("My name is: " + name);
-	 * 		}
-	 * 
-	 *	});
-	 * 
+	 * <p/>
+	 * Example Usage:
+	 * L.inputDialog(this, "What is your name", new InputListener() {
+	 * <p/>
+	 * public void inputResult(String value) {
+	 * String name = value;
+	 * L.alert("My name is: " + name);
+	 * }
+	 * <p/>
+	 * });
+	 *
 	 * @param c
 	 * @param msg
 	 * @param okListener
@@ -178,9 +180,8 @@ public class L {
 	public static void inputDialog(Context c, String msg, final InputListener okListener) {
 		inputDialog(c, msg, okListener, null);
 	}
-	
+
 	/**
-	 * 
 	 * @param c
 	 * @param msg
 	 * @param okListener
@@ -194,43 +195,42 @@ public class L {
 
 		// Set an EditText view to get user input
 		final EditText input = new EditText(c);
-		
+
 		if (defaultValue != null) {
 			input.setText(defaultValue);
 		}
-		
+
 		alert.setView(input);
 
 		alert.setPositiveButton("OK",
-				new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(
-							DialogInterface dialog,
-							int whichButton) {
-						String value = input.getText()
-								.toString();
-						okListener.inputResult(value);
-					}
-				});
+			new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(
+					DialogInterface dialog,
+					int whichButton) {
+					String value = input.getText()
+						.toString();
+					okListener.inputResult(value);
+				}
+			});
 
 		alert.setNegativeButton("Cancel", null);
-		alert.show();		
+		alert.show();
 	}
 
 	/**
 	 * Lazy Confirmation Dialog. For the activity implements OnClickListener
-	 * 
-	 * Example Usage: 
-	 * 
-	 * 	public class LoginActivity extends Activity implements OnClickListener {
-	 * 	
-	 * 		public void quit() {
-	 * 			L.confirmDialog(this, "Are you sure?");
-	 * 		}
-	 * 
-	 * 	}
-	 * 	
-	 * 
+	 * <p/>
+	 * Example Usage:
+	 * <p/>
+	 * public class LoginActivity extends Activity implements OnClickListener {
+	 * <p/>
+	 * public void quit() {
+	 * L.confirmDialog(this, "Are you sure?");
+	 * }
+	 * <p/>
+	 * }
+	 *
 	 * @param c
 	 * @param msg
 	 */
@@ -244,8 +244,8 @@ public class L {
 	}
 
 	/**
-	 * Confirmation Dialog with 
-	 * 
+	 * Confirmation Dialog with
+	 *
 	 * @param c
 	 * @param msg
 	 * @param yes
@@ -262,7 +262,7 @@ public class L {
 
 	/**
 	 * Progress Dialog
-	 * 
+	 *
 	 * @param x
 	 * @param msg
 	 */
@@ -274,68 +274,79 @@ public class L {
 		d.show();
 		return d;
 	}
-	
+
 	/**
 	 * Store a String
+	 *
+	 * @Deprecated Use LStorage.store() is recommended.
+	 *
 	 * @param c
 	 * @param key
 	 * @param value
 	 */
+
 	public static void storeString(Context c, String key, String value) {
-		c.getSharedPreferences("Preference", 0).edit().putString(key, value).commit();
+		LStorage.store(c, key, value);
 	}
-	
+
 	/**
 	 * Retrieve a String
+	 *
+	 * @Deprecated Use LStorage.getString() is recommended
+	 *
 	 * @param c
 	 * @param key
 	 * @return the value, return 'null' if the key doesn't exist.
 	 */
 	public static String getString(Context c, String key) {
-		return c.getSharedPreferences("Preference", 0).getString(key, null);
+		return LStorage.getString(c, key);
 	}
-	
+
 	/**
 	 * Get Bundle of a activity
+	 *
 	 * @param c
 	 * @return the bundle
 	 */
 	public static Bundle getBundle(Activity c) {
 		return c.getIntent().getExtras();
 	}
-	
+
 	/**
 	 * Lazy Log
 	 * Accept for very long string
 	 * Thanks to: http://stackoverflow.com/questions/7606077/how-to-display-long-messages-in-logcat
-	 * @param The message.
+	 *
+	 * @param msg The message.
 	 */
 	public static void log(String msg) {
 		if (!log)
-			return; 
-		
-		
-		final int MAX= 1000;
+			return;
+
+
+		final int MAX = 1000;
 		int start, end;
-		
-		for(int i = 0; i <= msg.length() / MAX; i++) {
+
+		for (int i = 0; i <= msg.length() / MAX; i++) {
 			start = i * MAX;
-		        end = (i+1) * MAX;
-		        end = end > msg.length() ? msg.length() : end;
-		        Log.v("Log", msg.substring(start, end));
+			end = (i + 1) * MAX;
+			end = end > msg.length() ? msg.length() : end;
+			Log.v("Log", msg.substring(start, end));
 		}
 	}
-	
+
 	/**
 	 * Enable Log
+	 *
 	 * @param b
 	 */
 	public static void enableLog(boolean b) {
 		log = b;
 	}
-	
+
 	/**
 	 * Lazy Open Url
+	 *
 	 * @param a
 	 * @param url
 	 */
@@ -343,12 +354,13 @@ public class L {
 		Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
 		a.startActivity(browserIntent);
 	}
-	
+
 	/**
 	 * Get Android App Version Name
-	 * 
+	 * <p/>
 	 * Thanks "plus-"
 	 * http://stackoverflow.com/questions/6593592/get-application-version-programatically-in-android
+	 *
 	 * @param c
 	 * @return App version
 	 */
