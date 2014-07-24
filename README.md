@@ -1,6 +1,6 @@
 LouisLam's Lazy Library for Android. 
 ===================
-
+(Sorry for my poor english)
 
 ### Why we need the library? ###
 
