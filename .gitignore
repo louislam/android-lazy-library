@@ -1,5 +1,4 @@
 # built application files
-*.apk
 *.ap_
 
 # files for the dex VM
@@ -18,3 +17,14 @@ local.properties
 # Eclipse project files
 .classpath
 .project
+
+# Idea
+.idea/
+LazyLibrary/.idea/artifacts/louislam_lazy_library_1_1_jar.xml
+LazyLibrary/ant.properties
+LazyLibrary/build.xml
+LazyLibrary/LazyLibrary.iml
+LazyLibrary/LazyLibrary.jar
+LazyLibrary/res/layout/main.xml
+LazyLibraryDemo/LazyLibraryDemo.iml
+LazyLibraryDemo/out/production/LazyLibraryDemo/LazyLibraryDemo.apk
