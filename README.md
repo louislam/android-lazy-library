@@ -35,6 +35,12 @@ There are example usage for the methods.
 "L" means LouisLam or Lazy.
 
 
+## What's News ##
+
+### 20 Sept 2014 (v1.1) ###
+- Lazy Storage (Class name: LStorage). You can store Sting, Int, Float or Boolean now.
+
+
 ## Installation ##
 
 1. Download the jar file.
