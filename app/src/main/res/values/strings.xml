@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="done">Done</string>
+    <string name="choose_items">Choose Items</string>
+    <string name="chooseItem">Choose an item</string>
+</resources>

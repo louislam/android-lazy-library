@@ -14,17 +14,13 @@ gen/
 # Local configuration file (sdk path, etc)
 local.properties
 
-# Eclipse project files
-.classpath
-.project
 
 # Idea
 .idea/
-LazyLibrary/.idea/artifacts/louislam_lazy_library_1_1_jar.xml
-LazyLibrary/ant.properties
-LazyLibrary/build.xml
-LazyLibrary/LazyLibrary.iml
-LazyLibrary/LazyLibrary.jar
-LazyLibrary/res/layout/main.xml
-LazyLibraryDemo/LazyLibraryDemo.iml
-LazyLibraryDemo/out/production/LazyLibraryDemo/LazyLibraryDemo.apk
+
+.gradle
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
