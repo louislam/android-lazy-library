@@ -1,31 +1,34 @@
 LouisLam's Lazy Library for Android. 
 ===================
-(Sorry for my poor english)
 
-### Why we need the library? ###
+### Why do we need `android-lazy-library`? ###
 
-Every single time, while i just wanted to pop out a simple alert dialog and I forgot how to create. Then I kept googling the code. Once I found that the code is very long. So I wonder why we cannot have a simple way just like Javascript's alert(). It is easy to remember and just one line of code!
+Every single time, personally, I always forgot how to create a simple alert dialog without googling. I was always wondering why we cannot have a simple way in Android just like Javascript's alert().
 
-So I decided to create the library to do that.
+So I decided to create this library to do that.
 
-	L.alert(this, "Hi.");
+```java
+L.alert(this, "Hi.");
+```
 
 Without the library to do the same thing:
 
-	AlertDialog.Builder b = new AlertDialog.Builder(this);
-	b.setMessage("Hi.");
-	b.setCancelable(false);
-	b.setPositiveButton("OK", new OnClickListener() {
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			dialog.dismiss();
-		}
-	});
-	b.show();
+```java
+AlertDialog.Builder b = new AlertDialog.Builder(this);
+b.setMessage("Hi.");
+b.setCancelable(false);
+b.setPositiveButton("OK", new OnClickListener() {
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		dialog.dismiss();
+	}
+});
+b.show();
+```
 
 It is more simple, right?
 
-Of course, the library contains other lazy functions. Check examples below.
+Of course, `android-lazy-library` contains other lazy functions. Please check examples below.
 
 
 ### Descriptions ###
@@ -47,7 +50,9 @@ There are example usage for the methods.
 2. Import the jar to your android project.
 3. Import the package in your Class/Activity.
 
-		import net.louislam.android.*;
+```java
+import net.louislam.android.*;
+```
 
 4. Done.
 
@@ -61,16 +66,17 @@ I love this so much. <3
 
 Usage: 
 
-	L.alert(this, "I am Louis.");
+```java
+L.alert(this, "I am Louis.");
+```
 
 Alert Dialog with callback:
 
-	L.alert(this, "Boss: Where is Louis!?", new OnClickListener() {
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			L.alert(MainActivity.this, "Louis: here :( ");
-		}
-	});
+```java
+L.alert(this, "Boss: Where is Louis!?", (dialog, which) -> {
+    L.alert(MainActivity.this, "Louis: here :( ");
+});
+```
 
 ## Lazy Input Dialog ##
 
