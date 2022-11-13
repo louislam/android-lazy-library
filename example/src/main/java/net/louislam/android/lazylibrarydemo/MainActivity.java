@@ -27,13 +27,8 @@ public class MainActivity extends AppCompatActivity {
 		L.alert(this, "I am Alert.");
 		
 		// Alert Dialog with callback
-		L.alert(this, "Boss: Where is Louis!?", new OnClickListener() {
-
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				L.alert(MainActivity.this, "Louis: here :( ");
-			}
-			
+		L.alert(this, "Boss: Where is Louis!?", (dialog, which) -> {
+			L.alert(MainActivity.this, "Louis: here :( ");
 		});
 		
 		L.confirmDialog(this, "Are you sure?", new OnClickListener () {
