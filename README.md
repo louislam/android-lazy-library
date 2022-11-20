@@ -1,7 +1,5 @@
-LouisLam's Lazy Library for Android.
+LouisLam's Lazy Library for Android
 ===================
-
-### Why do we need `android-lazy-library`? ###
 
 Every single time, I always forgot how to create a simple alert dialog without googling. I was always wondering why we cannot have a simple way to show alert dialog in Android  just like the JavaScript's alert().
 
@@ -30,18 +28,13 @@ It is more simple, right?
 
 Of course, `android-lazy-library` contains other lazy functions. Please check examples below.
 
-
-### Descriptions ###
-
-There are example usage for the methods.
-
 ## Installation ##
 
 ```gradle
 implementation 'net.louislam.android:lazy:2.0.0'
 ```
 
-### Assumption ###
+## Assumption ##
 In all examples, `this` means Activity/Context object.
 
 
