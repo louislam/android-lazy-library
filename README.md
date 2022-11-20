@@ -1,9 +1,9 @@
-LouisLam's Lazy Library for Android. 
+LouisLam's Lazy Library for Android.
 ===================
 
 ### Why do we need `android-lazy-library`? ###
 
-Every single time, personally, I always forgot how to create a simple alert dialog without googling. I was always wondering why we cannot have a simple way in Android just like Javascript's alert().
+Every single time, I always forgot how to create a simple alert dialog without googling. I was always wondering why we cannot have a simple way to show alert dialog in Android  just like the JavaScript's alert().
 
 So I decided to create this library to do that.
 
@@ -11,7 +11,7 @@ So I decided to create this library to do that.
 L.alert(this, "Hi.");
 ```
 
-Without the library to do the same thing:
+Without this, it would be like:
 
 ```java
 AlertDialog.Builder b = new AlertDialog.Builder(this);
@@ -35,39 +35,24 @@ Of course, `android-lazy-library` contains other lazy functions. Please check ex
 
 There are example usage for the methods.
 
-"L" means LouisLam or Lazy.
-
-
-## What's News ##
-
-### 20 Sept 2014 (v1.1) ###
-- Lazy Storage (Class name: LStorage). You can store Sting, Int, Float or Boolean now.
-
-
 ## Installation ##
 
-1. Download the jar file.
-2. Import the jar to your android project.
-3. Import the package in your Class/Activity.
-
-```java
-import net.louislam.android.*;
+```gradle
+implementation 'net.louislam.android:lazy:2.0.0'
 ```
 
-4. Done.
-
 ### Assumption ###
-In all examples, **"this" means Activity/Context object.**
+In all examples, `this` means Activity/Context object.
 
 
 ## Lazy Alert Dialog ##
 
 I love this so much. <3
 
-Usage: 
+Usage:
 
 ```java
-L.alert(this, "I am Louis.");
+L.alert(this, "I am Alert.");
 ```
 
 Alert Dialog with callback:
@@ -82,139 +67,143 @@ L.alert(this, "Boss: Where is Louis!?", (dialog, which) -> {
 
 Example Usage:
 
-	L.inputDialog(this, "What is your name?", new InputListener() {
-	 
-	 	public void inputResult(String value) {
-	 		String name = value;
-	 		L.alert(MainActivity.this, "My name is: " + name);
-		}
-	 
-	 });
+```java
+L.inputDialog(this, "What is your name?", value -> {
+    String name = value;
+    L.alert(MainActivity.this, "My name is: " + name);
+});
+```
 
 With default value (add a parameter to the last)
 
-	L.inputDialog(this, "What is your name?", new InputListener() {
-	 
-	 	public void inputResult(String value) {
-	 		String name = value;
-	 		L.alert(MainActivity.this, "My name is: " + name);
-		}
-	 
-	 }, "Louis");
+```java
+L.inputDialog(this, "What is your name?", value -> {
+    String name = value;
+    L.alert(MainActivity.this, "My name is: " + name);
+}, "Louis");
+```
 
 ## Lazy Confirmation Dialog ##
 
 Example Usage:
 
-	L.confirmDialog(this, "Are you sure?", new OnClickListener () {
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			// Do something here if clicked "Yes"	
-		}		
-	});
+```java
+L.confirmDialog(this, "Are you sure?", (dialog, which) -> {
+    // Do something here if clicked "Yes"
+});
+```
 
+For those activity classes already implement OnClickListener
 
-For those activity classes already implements OnClickListener
-
-	public class LoginActivity extends Activity implements OnClickListener {
-		....
-	  	public void quit() {
-			L.confirmDialog(this, "Are you sure?");
-	 	}
-		....
-	}
-
+```java
+public class LoginActivity extends Activity implements OnClickListener {
+    
+    public void quit() {
+        L.confirmDialog(this, "Are you sure?");
+    }
+    
+}
+```
 
 ## Lazy Loading Dialog ##
 
 Example Usage:
 
-	ProgressDialog loadingDialog = L.progressDialog(this, "Loading...");
+```java
+ProgressDialog loadingDialog = L.progressDialog(this, "Loading...");
+```
 
 Dismiss the dialog:
 
-	loadingDialog.dismiss();
+```java
+loadingDialog.dismiss();
+```
+
+## Lazy Toast ##
+
+Toast is so simple, but I still want to make it lazy.
+
+```java
+L.toast(this, "Hi, I am Toast.");
+L.toast(this, "Hi, I am Toast with duration.", true);
+```
 
 
 ## Lazy Log ##
 
-simply methods for LogCat
+Log without a tag and support long string.
 
 Example Usage:
 
-	L.log("[Debug] the activity is loaded.");
+```java
+L.log("[Debug] the activity is loaded.");
+```
 
 Disable/Enable Log globally
 
-	L.enableLog(false);
+```java
+L.enableLog(false);
+```
 
-
-## Lazy String Storage
+## Lazy Storage
 
 Store
 
-	L.storeString(this, "username", "louislam");
+```java
+LStorage.store(this, "key", "valueString");
+LStorage.store(this, "key", 123456);
+LStorage.store(this, "key", 3.14f);
+LStorage.store(this, "key", true);
+```
 
+Get
 
-Retrieve / Get
-
-	L.getString(this, "username");
-	
+```java
+LStorage.getString(this, "key");
+LStorage.getInt(this, "key");
+LStorage.getFloat(this, "key");
+LStorage.getBoolean(this, "key");
+```
 
 ## Lazy Start Activity ##
-	 
-Example Usage: 
 
+Example Usage:
+
+```java
 	L.startActivity(this, "LoginActivity");
+```
 
 or
 
+```java
 	L.startActivity(this, LoginActivity.class);
+```
 
 or (For result)
 
 1314 = Request Code
 
-	L.startActivity(this, LoginActivity.class, 1314);
+```java
+L.startActivity(this, LoginActivity.class, 1314);
+```
 
 or (starting an activity for result with bundle)
 
-	Bundle bundle = new Bundle();
-	L.startActivity(this, LoginActivity.class, 1314, bundle);
-
+```java
+Bundle bundle = new Bundle();
+L.startActivity(this, LoginActivity.class, 1314, bundle);
+```
 
 ## Others ##
 
 Open URL in browser
 
-	L.openUrl(this, "http://google.com");
+```java
+L.openUrl(this, "http://google.com");
+```
 
 Get your app's version
 
-	L.getAppVersion(this);
-
-
-## License ##
-
-
-The MIT License (MIT)
-
-Copyright (c) 2013 Louis Lam
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+```java
+L.getAppVersion(this);
+```

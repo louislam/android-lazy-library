@@ -3,14 +3,11 @@ package net.louislam.android.lazylibrarydemo;
 import net.louislam.android.L;
 import android.os.Bundle;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 import okhttp3.Response;
 
@@ -40,6 +37,12 @@ public class MainActivity extends AppCompatActivity {
 		L.confirmDialog(this, "Are you sure?", (dialog, which) -> {
 			// Do something here if clicked "Yes"
 		});
+
+		L.inputDialog(this, "What is your name?", value -> {
+			String name = value;
+			L.alert(MainActivity.this, "My name is: " + name);
+		}, "Louis");
+
 		
 		ProgressDialog loading = L.progressDialog(this, "Loading...");
 		loading.dismiss();
@@ -56,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
 			}
 		}).start();
 
-
+		L.toast(this, "Hi, I am Toast.");
+		L.toast(this, "Hi, I am Toast with duration.", true);
 	}
 
 	@Override

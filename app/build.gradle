@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+    namespace 'net.louislam.android'
     compileSdkVersion 33
 
     defaultConfig {
