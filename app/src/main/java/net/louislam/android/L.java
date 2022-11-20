@@ -540,9 +540,7 @@ public class L {
 
 		Request request = new Request.Builder().url(httpBuilder.build()).build();
 
-		try (Response response = client.newCall(request).execute()) {
-			return response;
-		}
+		return  client.newCall(request).execute();
 	}
 
 	public static void getAsync(String url) {

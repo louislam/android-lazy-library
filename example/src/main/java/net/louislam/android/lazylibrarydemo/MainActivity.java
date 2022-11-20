@@ -9,7 +9,10 @@ import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.IOException;
 import java.util.HashMap;
+
+import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 		// Disable Log globally
 		L.enableLog(false);
 		L.log("You can't see me. haha.");
+		L.enableLog(true);
 		
 		// Alert Dialog
 		L.alert(this, "I am Alert.");
@@ -33,18 +37,26 @@ public class MainActivity extends AppCompatActivity {
 			L.alert(MainActivity.this, "Louis: here :( ");
 		});
 		
-		L.confirmDialog(this, "Are you sure?", new OnClickListener () {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				// Do something here if clicked "Yes"	
-			}		
+		L.confirmDialog(this, "Are you sure?", (dialog, which) -> {
+			// Do something here if clicked "Yes"
 		});
 		
 		ProgressDialog loading = L.progressDialog(this, "Loading...");
 		loading.dismiss();
 
+		// HTTP GET
+		new Thread(() -> {
+			try {
+				Response res = L.get("https://uptime.kuma.pet/github-public-sponsors.json");
+				L.log("Response:");
+				L.log(res.body().string());
+				res.close();
+			} catch (IOException ex) {
+				L.log(ex.getMessage());
+			}
+		}).start();
 
-		L.getAsync("https://louislam.net/fire-widget-log", null, null);
+
 	}
 
 	@Override
