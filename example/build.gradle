@@ -27,6 +27,7 @@ android {
 }
 
 dependencies {
-    implementation project(':app')
+    api project(':app')
     implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.10'
 }

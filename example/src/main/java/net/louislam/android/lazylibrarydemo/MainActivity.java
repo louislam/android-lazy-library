@@ -9,6 +9,8 @@ import android.view.Menu;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
 
 	@Override
@@ -40,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
 		
 		ProgressDialog loading = L.progressDialog(this, "Loading...");
 		loading.dismiss();
+
+
+		L.getAsync("https://louislam.net/fire-widget-log", null, null);
 	}
 
 	@Override

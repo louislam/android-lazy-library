@@ -15,9 +15,27 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okio.BufferedSink;
+import okio.Okio;
 
 /**
  * Louis Lam's Lazy Library for Android.
@@ -61,8 +79,6 @@ public class L {
 	 * Determine the log whether should be displayed
 	 */
 	private static boolean log = true;
-
-	private static boolean logToFile = false;
 
 	/**
 	 * Lazy start an activity with a string of class name.
@@ -283,33 +299,6 @@ public class L {
 	}
 
 	/**
-	 * Store a String
-	 *
-	 * @Deprecated Use LStorage.store() is recommended.
-	 *
-	 * @param c
-	 * @param key
-	 * @param value
-	 */
-
-	public static void storeString(Context c, String key, String value) {
-		LStorage.store(c, key, value);
-	}
-
-	/**
-	 * Retrieve a String
-	 *
-	 * @Deprecated Use LStorage.getString() is recommended
-	 *
-	 * @param c
-	 * @param key
-	 * @return the value, return 'null' if the key doesn't exist.
-	 */
-	public static String getString(Context c, String key) {
-		return LStorage.getString(c, key);
-	}
-
-	/**
 	 * Get Bundle of a activity
 	 *
 	 * @param c
@@ -330,7 +319,6 @@ public class L {
 		if (!log)
 			return;
 
-
 		final int MAX = 1000;
 		int start, end;
 
@@ -342,6 +330,14 @@ public class L {
 		}
 	}
 
+	public static void log(int msg) {
+		log(msg + "");
+	}
+
+	public static void log(int[] array) {
+		log(Arrays.toString(array));
+	}
+
 	/**
 	 * Enable Log
 	 *
@@ -349,15 +345,6 @@ public class L {
 	 */
 	public static void enableLog(boolean b) {
 		log = b;
-	}
-
-	/**
-	 * TODO
-	 * @param b
-	 * @deprecated TODO
-	 */
-	public static void logToFile(boolean b) {
-		logToFile = b;
 	}
 
 	/**
@@ -507,5 +494,183 @@ public class L {
 		// create the alert dialog with the alert dialog builder instance
 		AlertDialog alertDialog = builder.create();
 		alertDialog.show();
+	}
+
+	public static File getInternalFilesDir(Context context) {
+		return context.getFilesDir();
+	}
+
+	public static File getExternalFilesDir(Context context) {
+		return context.getExternalFilesDir("");
+	}
+
+	public static void appendToFile(Context context, File file, String text) throws IOException {
+		OutputStreamWriter writer = new OutputStreamWriter(new FileOutputStream(file, true));
+		writer.append(text);
+		writer.close();
+	}
+
+	public static Response get(String url) throws IOException {
+		return get(url, null);
+	}
+
+	/**
+	 * ⚠️ Remember to call response.close() after you're done with it
+	 * @param url
+	 * @param params
+	 * @return
+	 * @throws IOException
+	 */
+	public static Response get(String url, Map<String,String> params) throws IOException {
+		var client = new OkHttpClient();
+
+		HttpUrl httpURL = HttpUrl.parse(url);
+
+		if (httpURL == null) {
+			throw new IOException("Invalid URL");
+		}
+
+		var httpBuilder = httpURL.newBuilder();
+
+		if (params != null) {
+			for (Map.Entry<String, String> entry : params.entrySet()) {
+				httpBuilder.addQueryParameter(entry.getKey(), entry.getValue());
+			}
+		}
+
+		Request request = new Request.Builder().url(httpBuilder.build()).build();
+
+		try (Response response = client.newCall(request).execute()) {
+			return response;
+		}
+	}
+
+	public static void getAsync(String url) {
+		getAsync(url, null, (response, e) -> { });
+	}
+
+	public static void getAsync(String url, ResponseCallback callback) {
+		getAsync(url, null, callback);
+	}
+
+	public static void getAsync(String url, Map<String,String> data) {
+		getAsync(url, data, (response, e) -> { });
+	}
+
+	/**
+	 * Make a GET request to a URL with Query String
+	 * In PHP, you can read the value by $_GET
+	 * @param url
+	 * @param data
+	 * @param callback
+	 */
+	public static void getAsync(String url, Map<String,String> data, ResponseCallback callback) {
+		new Thread(() -> {
+			var client = new OkHttpClient();
+			HttpUrl httpURL = HttpUrl.parse(url);
+
+			if (httpURL == null) {
+				if (callback != null) {
+					callback.run(null, new IOException("Invalid URL"));
+				}
+				return;
+			}
+
+			var httpBuilder = httpURL.newBuilder();
+
+			if (data != null) {
+				for (Map.Entry<String, String> entry : data.entrySet()) {
+					httpBuilder.addQueryParameter(entry.getKey(), entry.getValue());
+				}
+			}
+
+			Request request = new Request.Builder().url(httpBuilder.build()).build();
+			client.newCall(request).enqueue(new Callback() {
+				@Override
+				public void onFailure(@NotNull Call call, @NotNull IOException e) {
+					if (callback != null) {
+						callback.run(null, e);
+					}
+				}
+
+				@Override
+				public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+					if (callback != null) {
+						callback.run(response, null);
+					}
+					response.close();
+				}
+			});
+		}).start();
+	}
+
+	/**
+	 * Make a POST request to a URL with FormBody Data
+	 * In PHP, you can read the value by $_POST
+	 * @param url
+	 * @param data
+	 * @param callback
+	 */
+	public static void postAsync(String url, Map<String,String> data, ResponseCallback callback) {
+		new Thread(() -> {
+			var client = new OkHttpClient();
+			HttpUrl httpURL = HttpUrl.parse(url);
+
+			if (httpURL == null) {
+				if (callback != null) {
+					callback.run(null, new IOException("Invalid URL"));
+				}
+				return;
+			}
+
+			var httpBuilder = httpURL.newBuilder();
+			var bodyBuilder = new FormBody.Builder();
+
+			if (data != null) {
+				for (Map.Entry<String, String> entry : data.entrySet()) {
+					bodyBuilder.add(entry.getKey(), entry.getValue());
+				}
+			}
+
+			Request request = new Request.Builder()
+					.url(httpBuilder.build())
+					.post(bodyBuilder.build())
+					.build();
+
+			client.newCall(request).enqueue(new Callback() {
+				@Override
+				public void onFailure(@NotNull Call call, @NotNull IOException e) {
+					callback.run(null, e);
+				}
+
+				@Override
+				public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+					if (callback != null) {
+						callback.run(response, null);
+					}
+					response.close();
+				}
+			});
+		}).start();
+	}
+
+	/**
+	 * ⚠️ Network call
+	 * @param url
+	 * @param targetFile
+	 * @throws IOException
+	 */
+	public static File downloadFile(String url, File targetFile) throws IOException {
+		var response = get(url);
+		BufferedSink sink = Okio.buffer(Okio.sink(targetFile));
+
+		if (response.body() != null) {
+			sink.writeAll(response.body().source());
+			sink.close();
+			return targetFile;
+		} else {
+			sink.close();
+			throw new IOException("Response body is null, cannot convert to a file");
+		}
 	}
 }
