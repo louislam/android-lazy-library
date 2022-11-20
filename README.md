@@ -170,13 +170,13 @@ LStorage.getBoolean(this, "key");
 Example Usage:
 
 ```java
-	L.startActivity(this, "LoginActivity");
+L.startActivity(this, "LoginActivity");
 ```
 
 or
 
 ```java
-	L.startActivity(this, LoginActivity.class);
+L.startActivity(this, LoginActivity.class);
 ```
 
 or (For result)
