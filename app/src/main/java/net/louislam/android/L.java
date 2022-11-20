@@ -179,7 +179,7 @@ public class L {
 		AlertDialog.Builder b = new AlertDialog.Builder(c);
 		b.setMessage(msg);
 		b.setCancelable(false);
-		b.setPositiveButton("OK", callBack);
+		b.setPositiveButton(c.getString(R.string.ok), callBack);
 		b.show();
 	}
 
@@ -213,7 +213,7 @@ public class L {
 	public static void inputDialog(Context c, String msg, final InputListener okListener, String defaultValue) {
 		AlertDialog.Builder alert = new AlertDialog.Builder(c);
 
-		alert.setTitle("Input Dialog");
+		alert.setTitle(R.string.input_dialog);
 		alert.setMessage(msg);
 
 		// Set an EditText view to get user input
@@ -225,7 +225,7 @@ public class L {
 
 		alert.setView(input);
 
-		alert.setPositiveButton("OK",
+		alert.setPositiveButton(R.string.ok,
 			new DialogInterface.OnClickListener() {
 				@Override
 				public void onClick(
@@ -237,7 +237,7 @@ public class L {
 				}
 			});
 
-		alert.setNegativeButton("Cancel", null);
+		alert.setNegativeButton(R.string.cancel, null);
 		alert.show();
 	}
 
@@ -275,10 +275,10 @@ public class L {
 	 */
 	public static AlertDialog.Builder confirmDialog(Context c, String msg, OnClickListener yes) {
 		AlertDialog.Builder alert = new AlertDialog.Builder(c);
-		alert.setTitle("Confirmation");
+		alert.setTitle(R.string.confirmation);
 		alert.setMessage(msg);
-		alert.setPositiveButton("Yes", yes);
-		alert.setNegativeButton("No", null);
+		alert.setPositiveButton(R.string.yes, yes);
+		alert.setNegativeButton(R.string.no, null);
 		alert.show();
 		return alert;
 	}

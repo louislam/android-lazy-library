@@ -3,4 +3,10 @@
     <string name="done">Done</string>
     <string name="choose_items">Choose Items</string>
     <string name="chooseItem">Choose an item</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="ok">OK</string>
+    <string name="input_dialog">Input Dialog</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirmation">Confirmation</string>
 </resources>
