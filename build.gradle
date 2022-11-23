@@ -3,3 +3,22 @@ plugins {
     id 'com.android.application' version '7.3.1' apply false
     id 'com.android.library' version '7.3.1' apply false
 }
+
+apply plugin: 'maven-publish'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'net.louislam.android'
+            artifactId = 'lazy'
+            version = "1.0.0"
+            url = 'https://github.com/louislam/android-lazy-library'
+            from components.java
+
+            pom {
+                name = 'LouisLam\'s Lazy Library for Android'
+                description = 'A library for Android to make your code easy and simple.'
+            }
+        }
+    }
+}

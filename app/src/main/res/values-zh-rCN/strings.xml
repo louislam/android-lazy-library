@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="done">完成</string>
+    <string name="choose_items">請選擇項目（可多選）</string>
+    <string name="chooseItem">請選擇一個項目</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="ok">可以</string>
+    <string name="input_dialog">輸入</string>
+    <string name="cancel">取消</string>
+    <string name="confirmation">請確定</string>
+</resources>
